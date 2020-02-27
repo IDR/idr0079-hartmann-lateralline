@@ -19,6 +19,7 @@ template = """<?xml version='1.0' encoding='utf-8'?>
 #out_dir = Path("home/dlindner/generated")
 in_dir = Path("/Users/dlindner/idr0079_mount")
 out_dir = Path("/Users/dlindner/generated")
+nfs_dir = Path("/uod/idr/filesets/idr0079-hartmann-lateralline/20200220-ftp")
 
 
 def get_xyz(image_file):
@@ -39,6 +40,8 @@ def write_companion(exp_dir, img_dir, file_name, x, y, z, uuid):
   writer = open(out_file, "w")
   writer.write(output)
   writer.close()
+  ln = nfs_dir / exp_dir / img_dir / file_name
+  os.system("ln -s {} {}".format(str(ln), str(p.resolve())))
 
 
 for exp_dir in in_dir.iterdir():
