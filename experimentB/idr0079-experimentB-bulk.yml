@@ -1,5 +1,5 @@
 ---
-path: "idr0079-experimentA-filePaths.tsv"
+path: "idr0079-experimentB-filePaths.tsv"
 continue: true
 transfer: "ln_s"
 exclude: "clientpath"
