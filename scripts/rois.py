@@ -13,29 +13,34 @@ RGBA = (255, 255, 255, 128)
 DRYRUN = False
 
 def create_rois(im, seg_im):
-    assert im.getSizeZ() == seg_im.getSizeZ()
+    print("Processing {} - {}".format(im.name, seg_im.name))
+    if im.getSizeZ() != seg_im.getSizeZ():
+        print("Z size does not match. Skipping.")
+        return []
+
     rois = []
+    n_shapes = 0
     for z in range(0, im.getSizeZ()):
         plane = seg_im.getPrimaryPixels().getPlane(z, 0, 0)
         roi = omero.model.RoiI()
         shapes = masks_from_label_image(plane, rgba=RGBA, z=z, raise_on_no_mask=False)
         if len(shapes) > 0:
-            print("z={}, shapes={}".format(z, len(shapes)))
+            n_shapes += len(shapes)
             for s in shapes:
                 roi.addShape(s)
             rois.append(roi)
+    print("{} masks created.".format(n_shapes))
     return rois
 
 
 def save_rois(conn, im, rois):
-    print('Saving %d ROIs for image %d:%s' % (len(rois), im.id, im.name))
+    print("Saving {} ROIs for image {}:{}".format(len(rois), im.id, im.name))
     us = conn.getUpdateService()
     for roi in rois:
         # Due to a bug need to reload the image for each ROI
         im = conn.getObject('Image', im.id)
         roi.setImage(im._obj)
         roi1 = us.saveAndReturnObject(roi)
-        assert roi1
 
 
 def get_images(conn):
@@ -50,19 +55,25 @@ def get_images(conn):
 def get_segmented_image(conn, image):
     name = image.name.replace(".tif", "")
     name = name+"_seg.tif.companion.ome"
-    result = conn.getObject('Image', attributes={'name': name})
-    assert result
-    return result
+    try:
+        result = conn.getObject('Image', attributes={'name': name})
+        return result
+    except Exception as e:
+        print("Could not find {} for {}".format(name, image.name))
+        return None
 
 
 def main(conn):
     for im in get_images(conn):
-        print('Image: {}'.format(im.id))
         seg_im = get_segmented_image(conn, im)
-        print('Segmented Image: {}'.format(seg_im.id))
-        rois = create_rois(im, seg_im)
-        if not DRYRUN:
-            save_rois(conn, im, rois)
+        if seg_im is None:
+            continue
+        try: 
+            rois = create_rois(im, seg_im)
+            if not DRYRUN and len(rois) > 0:
+                save_rois(conn, im, rois)
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
@@ -72,5 +83,3 @@ if __name__ == '__main__':
     pw = os.environ.get('OMERO_PASSWORD', 'NA')
     with BlitzGateway(user, pw, host=host, port=port) as conn:
         main(conn)
-
-
