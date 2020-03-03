@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OME xmlns="http://www.openmicroscopy.org/Schemas/OME/2016-06" xmlns:OME="http://www.openmicroscopy.org/Schemas/OME/2016-06" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openmicroscopy.org/Schemas/OME/2016-06 http://www.openmicroscopy.org/Schemas/OME/2016-06/ome.xsd">
+  <Image ID="Image:0" Name="8B697371A1">
+    <Pixels DimensionOrder="XYZCT" ID="Pixels:0:0" SizeC="2" SizeT="1" SizeX="1636" SizeY="816" SizeZ="158" Type="uint16">
+      <TiffData FirstC="0" FirstT="0" FirstZ="0" PlaneCount="158">
+        <UUID FileName="8B697371A1_8bit_atoh1a.tif">urn:uuid:50cfd098-5d6e-11ea-8596-7831c1bfe202</UUID>
+      </TiffData>
+      <TiffData FirstC="1" FirstT="0" FirstZ="0" PlaneCount="158">
+        <UUID FileName="8B697371A1_8bit_lynEGFP.tif">urn:uuid:50cfd2e6-5d6e-11ea-808a-7831c1bfe202</UUID>
+      </TiffData>
+    </Pixels>
+  </Image>
+</OME>
