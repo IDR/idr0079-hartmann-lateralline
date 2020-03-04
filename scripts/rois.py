@@ -47,13 +47,13 @@ def get_images(conn):
     project = conn.getObject('Project', attributes={'name': PROJECT})
     for dataset in project.listChildren():
         for image in dataset.listChildren():
-            if image.name.endswith('companion.ome'):
+            if image.name.endswith('_seq.companion.ome') or image.name.endswith('_linUnmix.companion.ome'):
                 continue
             yield image
 
 
 def get_segmented_image(conn, image):
-    name = image.name.replace(".tif", "")
+    name = image.name.replace(".companion.ome", "")
     name = name+"_seg.tif.companion.ome"
     try:
         result = conn.getObject('Image', attributes={'name': name})

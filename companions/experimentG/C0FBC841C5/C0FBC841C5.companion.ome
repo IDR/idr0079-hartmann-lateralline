@@ -3,10 +3,10 @@
   <Image ID="Image:0" Name="C0FBC841C5">
     <Pixels DimensionOrder="XYZCT" ID="Pixels:0:0" SizeC="2" SizeT="1" SizeX="1636" SizeY="816" SizeZ="130" Type="uint16">
       <TiffData FirstC="0" FirstT="0" FirstZ="0" PlaneCount="130">
-        <UUID FileName="C0FBC841C5_8bit_CDMPRtagRFPt.tif">urn:uuid:3f81bafe-5d6e-11ea-9fcd-7831c1bfe202</UUID>
+        <UUID FileName="C0FBC841C5_8bit_CDMPRtagRFPt.tif">urn:uuid:5cd0ce00-5e28-11ea-8d3e-7831c1bfe202</UUID>
       </TiffData>
       <TiffData FirstC="1" FirstT="0" FirstZ="0" PlaneCount="130">
-        <UUID FileName="C0FBC841C5_8bit_lynEGFP.tif">urn:uuid:3f81bd62-5d6e-11ea-9a31-7831c1bfe202</UUID>
+        <UUID FileName="C0FBC841C5_8bit_lynEGFP.tif">urn:uuid:5cd0d080-5e28-11ea-b30c-7831c1bfe202</UUID>
       </TiffData>
     </Pixels>
   </Image>

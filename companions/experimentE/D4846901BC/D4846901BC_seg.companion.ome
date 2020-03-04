@@ -3,7 +3,7 @@
   <Image ID="Image:0" Name="D4846901BC_seg">
     <Pixels DimensionOrder="XYZCT" ID="Pixels:0:0" SizeC="1" SizeT="1" SizeX="1636" SizeY="816" SizeZ="132" Type="uint16">
       <TiffData FirstC="0" FirstT="0" FirstZ="0" PlaneCount="132">
-        <UUID FileName="D4846901BC_8bit_lynEGFP_seg.tif">urn:uuid:249c422c-5d6e-11ea-bc78-7831c1bfe202</UUID>
+        <UUID FileName="D4846901BC_8bit_lynEGFP_seg.tif">urn:uuid:4d2e146c-5e28-11ea-8503-7831c1bfe202</UUID>
       </TiffData>
     </Pixels>
   </Image>
