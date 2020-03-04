@@ -8,7 +8,7 @@ import omero.clients
 from omero.gateway import BlitzGateway
 from omero_rois import masks_from_label_image
 
-PROJECT = "idr0079-hartmann-lateralline/experimentA"
+PROJECT = "idr0079-hartmann-lateralline/experimentB"
 RGBA = (255, 255, 255, 128)
 DRYRUN = False
 
@@ -54,7 +54,7 @@ def get_images(conn):
 
 def get_segmented_image(conn, image):
     name = image.name.replace(".companion.ome", "")
-    name = name+"_seg.tif.companion.ome"
+    name = name+"_seg.companion.ome"
     try:
         result = conn.getObject('Image', attributes={'name': name})
         return result
