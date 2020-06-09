@@ -8,6 +8,7 @@
 | Images| 1hr | -- |
 | Thumbnails | -- | -- |
 | Annotations | -- | -- |
+| Rois | 6hr | -- |
 
 ### idr-next
 | Task | Duration | Checked |
@@ -15,3 +16,4 @@
 | Images| -- | -- |
 | Thumbnails | -- | -- |
 | Annotations | -- | -- |
+| ROIs | -- | -- |
