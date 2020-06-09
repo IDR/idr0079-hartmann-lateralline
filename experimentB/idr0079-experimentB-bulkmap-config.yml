@@ -1,0 +1,47 @@
+---
+name: idr0079-hartmann-lateralline/experimentB
+version: 1
+
+defaults:
+  include: no
+  type: string
+  split: ;
+  includeclient: yes
+  visible: yes
+  omitempty: yes
+
+columns:
+
+  - name: Characteristics [Organism Part]
+    clientname: Organism Part
+    include: yes
+
+  - name: Experimental Condition [Fluorescent Labels]
+    clientname: Fluorescent Labels
+    include: yes
+
+  - name: Comment [Fluorescent Label Reference DOIs]
+    clientname: Fluorescent Label Reference DOIs
+    include: yes
+
+  - name: Channels
+    include: true
+
+
+  ######################################################################
+  # mapr groups
+  ######################################################################
+
+  - group:
+      namespace: openmicroscopy.org/mapr/organism
+      columns:
+        - name: Characteristics [Organism]
+          clientname: Organism
+          include: yes
+
+advanced:
+  ignore_missing_primary_key: yes
+  primary_group_keys:
+    - namespace: openmicroscopy.org/mapr/organism
+      keys:
+        - Organism
