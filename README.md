@@ -17,3 +17,7 @@
 | Thumbnails | -- | -- |
 | Annotations | -- | -- |
 | ROIs | -- | -- |
+
+Notes: After image import you need to run the 'rename_images.py' script 
+to remove the 'companion.ome' extension so that they match up with the 
+annotation.csv.
