@@ -13,4 +13,6 @@ with open(file+"_mod", mode='w') as out_file:
         for row in csv_reader:
             if row[0].endswith("_seg"):
                 row[1] += "_seg"
+            if "linUnmix" in row[10]:
+                row[1] += "_linUnmix"
             csv_writer.writerow(row)
