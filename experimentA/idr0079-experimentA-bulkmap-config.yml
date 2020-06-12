@@ -5,7 +5,6 @@ version: 1
 defaults:
   include: no
   type: string
-  split: ;
   includeclient: yes
   visible: yes
   omitempty: yes
