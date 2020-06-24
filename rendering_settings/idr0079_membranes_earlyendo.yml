@@ -1,0 +1,8 @@
+---
+channels:
+    1:
+        active: true
+        end: 175.0
+        start: 5.0
+greyscale: false
+version: 2

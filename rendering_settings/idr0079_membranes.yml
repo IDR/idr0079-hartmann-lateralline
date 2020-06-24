@@ -1,0 +1,8 @@
+---
+channels:
+    1:
+        active: true
+        end: 100.0
+        start: 5.0
+greyscale: true
+version: 2
