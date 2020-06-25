@@ -22,7 +22,7 @@ def main(conn, filepath):
   tmp = conn.getObjects("Dataset", attributes={"name": ds_name})
   if len(list(tmp)) > 1:
     sys.exit("More than one dataset found")
-  tgt = tmp[0]
+  tgt = next(tmp)
 
   existingfas = set(
     a.getFile().name for a in tgt.listAnnotations()
