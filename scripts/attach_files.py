@@ -10,7 +10,7 @@ from pathlib import Path
 MIMETYPE = 'application/zip'
 NAMESPACE = 'openmicroscopy.org/idr/analysis/original'
 OMERO_DATA_DIR = '/data/OMERO'
-DRY_RUN = True
+DRY_RUN = False
 
 def main(conn, filepath):
   path = Path(filepath)
