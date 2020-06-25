@@ -20,7 +20,7 @@ def main(conn, filepath):
 
   ds_name = path.stem
   tmp = conn.getObjects("Dataset", attributes={"name": ds_name})
-  if len(tmp) > 1:
+  if len(list(tmp)) > 1:
     sys.exit("More than one dataset found")
   tgt = tmp[0]
 
