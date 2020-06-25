@@ -19,10 +19,12 @@ def main(conn, filepath):
     sys.exit("Not a zip file")
 
   img_name = path.stem
-  tmp = conn.getObjects("Image", attributes={"name": img_name})
-  if len(list(tmp)) > 1:
+  tmp = list(conn.getObjects("Image", attributes={"name": img_name}))
+  if len(tmp) == 0:
+    sys.exit("No Image found")
+  if len(tmp) > 1:
     sys.exit("More than one Image found")
-  tgt = next(tmp)
+  tgt = tmp[0]
 
   existingfas = set(
     a.getFile().name for a in tgt.listAnnotations()
