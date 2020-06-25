@@ -2,7 +2,7 @@ import argparse
 import omero.clients
 import omero.cli
 import sys
-from uploadinplace import upload_ln_s
+from omero_upload import upload_ln_s
 from pathlib import Path
 
 # In-place Attach zip file to dataset
@@ -32,7 +32,7 @@ def main(conn, filepath):
 
   print("Attaching {} to Dataset {} [{}]".format(path.resolve(), tgt.getName(), tgt.getId()))
   if not DRY_RUN:
-    fo = upload_ln_s(path.resolve(), conn, OMERO_DATA_DIR, MIMETYPE)
+    fo = upload_ln_s(conn.c, path.resolve(), OMERO_DATA_DIR, MIMETYPE)
     fa = omero.model.FileAnnotationI()
     fa.setFile(fo._obj)
     fa.setNs(omero.rtypes.rstring(NAMESPACE))
