@@ -18,10 +18,10 @@ def main(conn, filepath):
   if path.suffix != '.zip':
     sys.exit("Not a zip file")
 
-  ds_name = path.stem
-  tmp = conn.getObjects("Dataset", attributes={"name": ds_name})
+  img_name = path.stem
+  tmp = conn.getObjects("Image", attributes={"name": img_name})
   if len(list(tmp)) > 1:
-    sys.exit("More than one dataset found")
+    sys.exit("More than one Image found")
   tgt = next(tmp)
 
   existingfas = set(
@@ -30,7 +30,7 @@ def main(conn, filepath):
   if filename in existingfas:
     sys.exit("File already attached.")
 
-  print("Attaching {} to Dataset {} [{}]".format(path.resolve(), tgt.getName(), tgt.getId()))
+  print("Attaching {} to Image {} [{}]".format(path.resolve(), tgt.getName(), tgt.getId()))
   if not DRY_RUN:
     fo = upload_ln_s(conn.c, path.resolve(), OMERO_DATA_DIR, MIMETYPE)
     fa = omero.model.FileAnnotationI()
