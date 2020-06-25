@@ -1,0 +1,150 @@
+# FILL IN AS MUCH INFORMATION AS YOU CAN.  HINTS HAVE BEEN PUT IN SOME FIELDS AFTER THE HASH # SYMBOL. REPLACE THE HINT WITH TEXT WHERE APPROPRIATE.						
+						
+# STUDY DESCRIPTION SECTION						
+# Section with generic information about the study including title, description, publication details (if applicable) and contact details						
+						
+Comment[IDR Study Accession]	idr0079					
+Study Title	An Image-Based Data-Driven Analysis of Cellular Architecture in a Developing Tissue					
+Study Type	microscopy assay					
+Study Type Term Source REF	EFO					
+Study Type Term Accession	EFO_0002909					
+Study Description	A data-driven analysis of cell morphology and intracellular organization in the developing zebrafish posterior lateral line primordium, a model tissue for the study of self-organized morphogenesis. 3D image stacks were acquired using AiryScan FAST-mode confocal fluorescence microscopy. Automated single-cell segmentation and point cloud-based morphometry were developed to extract numerical features representing cell morphology and intracellular protein distributions. Machine learning was used with the extracted numerical features to perform data integration across experiments and context-guided data visualization. The resulting data was analyzed to discover biologically meaningful patterns at the cell and tissue scale.					
+Study Key Words	image analysis	cellular morphometry	morphogenesis	lateral line primordium	data integration	context-guided visualization					
+Study Organism	Danio rerio					
+Study Organism Term Source REF	NCBITaxon					
+Study Organism Term Accession	7955					
+Study Experiments Number	2					
+Study External URL	github.com/WhoIsJack/data-driven-analysis-lateralline	
+Study BioImage Archive Accession				
+Study Public Release Date					
+						
+# Study Publication						
+Study PubMed ID						
+Study Publication Title	An Image-Based Data-Driven Analysis of Cellular Architecture in a Developing Tissue					
+Study Author List	Hartmann J, Wong M, Gallo E, Gilmour D					
+Study PMC ID						
+Study DOI	 					
+						
+# Study Contacts						
+Study Person Last Name	Hartmann	Gilmour				
+Study Person First Name	Jonas	Darren				
+Study Person Email	jonas.m.hartmann@protonmail.com	darren.gilmour@imls.uzh.ch				
+Study Person Address	Developmental Biology Unit, European Molecular Biology Laboratory (EMBL), Heidelberg, Germany	Institute of Molecular Life Sciences, University of Zurich (UZH), Zurich, Switzerland 				
+Study Person ORCID	0000-0002-5600-8285					
+Study Person Roles	submitter, study lead	principal investigator				
+						
+# Study License and Data DOI						
+Study License	CC BY 4.0					
+Study License URL	https://creativecommons.org/licenses/by/4.0/					
+Study Copyright	Hartmann et al					
+Study Data Publisher	University of Dundee					
+Study Data DOI						
+						
+Term Source Name	NCBITaxon	EFO	CMPO	FBbi		
+Term Source URI	http://purl.obolibrary.org/obo/	http://www.ebi.ac.uk/efo/	http://www.ebi.ac.uk/cmpo/	http://purl.obolibrary.org/obo/		
+						
+						
+# EXPERIMENT SECTION						
+# Experiment Section containing all information relative to each experiment in the study including materials used, protocols names and description, phenotype names and description. For multiple experiments this section should be repeated.  Copy and paste the whole section below and fill out for the next experiment						
+						
+Experiment Number	1					
+Comment[IDR Experiment Name]	idr0079-hartmann-lateralline/experimentA	
+Experiment Sample Type	tissue				
+Experiment Description	3D confocal live imaging of the zebrafish posterior lateral line primordium labeled with the membrane marker cldnB:lyn-EGFP for segmentation and optionally with one of several additional labels.					
+Experiment Size	5D Images: 165	Average Image Dimension (XYZCT): 1625 x 810 x 141 x 2 x 1	Total Tb: 0.113			
+Experiment Example Images	D2470961E8					
+Experiment Imaging Method	confocal microscopy	
+Experiment Imaging Method Term Source REF	Fbbi					
+Experiment Imaging Method Term Accession	FBbi_00000251					
+Experiment Comments	AiryScan FAST-mode confocal fluorescence microscopy					
+						
+# assay files						
+Experiment Assay File	idr0079-experimentA-assays.txt					
+Experiment Assay File Format	tab-delimited text					
+Assay Experimental Conditions						
+Assay Experimental Conditions Term Source REF						
+Assay Experimental Conditions Term Accession					
+Quality Control Description	Single-cell segmentation quality was checked manually for samples where a large number of cells (>20%) failed to be recognized by the algorithm.					
+						
+# Protocols						
+Protocol Name	growth protocol	image acquisition and feature extraction protocol	data analysis protocol			
+Protocol Type	growth protocol	image acquisition and feature extraction protocol	data analysis protocol			
+Protocol Type Term Source REF	EFO					
+Protocol Type Term Accession	EFO_0003789					
+Protocol Description	Zebrafish embryos were grown in E3 buffer at 27-30°C according to standard procedures (see zfin.org/zf_info/zfbook/zfbk.html). Where applicable, mRNA for reporter gene expression was injected at the 1-cell stage. Pigmentation was prevented by treating embryos with 0.002% N-phenylthiourea (PTU) starting at 25hpf.	Embryos expressed the transgenic membrane label cldnb:lyn-EGFPR (see doi.org/10.1016/j.devcel.2006.02.019) and in most cases one of several additional red fluorescence markers (see Experiment Assay File). Where applicable, lysosomes were stained by treating embryos with 1?M LysoTracker Deep Red in E3 medium with 1% DMSO for 90 minutes prior to mounting. For imaging, embryos were dechorionated manually, anaesthetized with 0.01% Tricaine and mounted in 1% peqGOLD Low Melt Agarose in E3 containing 0.01% Tricaine in a MatTek Glass Bottom Microwell Dish (35mm Petri dish, 10mm microwell, 0.16-0.19mm coverglass). Imaging was performed on the Zeiss LSM880 AiryScan confocal microscope in FAST mode with a 40X 1.2NA water objective with Immersol W immersion fluid. Deconvolution was performed using the ZEN Black Software's 3D AiryScan deconvolution with 'auto' settings. Where appropriate, linear unmixing of channel bleed-through was performed as described in the Study Publication. Automated single-cell segmentation was performed using a custom python pipeline based on thresholding and watershed expansion, described in detail in the Study Publication.	Numerical features describing cell morphology and subcellular protein distributions were computed for each segmented cell using a point cloud-based morphometry approach. Protein distribution features were then cross-predicted between datasets using machine learning based on cell shape features as input. RNA spot counts from pea3 single molecule Fluorescence In-Situ Hybridization (see experiment B) were similarly predicted for each cell in all other samples. To provide biological context for analysis and visualization, specific biologically relevant cellular archetypes were manually annotated in some samples and then again cross-predicted for all cells based on cell shape features. Custom pipelines and algorithms for these analyses were implemented in python and are described in detail in the Study Publication.			
+						
+# Phenotypes						
+Phenotype Name						
+Phenotype Description						
+Phenotype Score Type						
+Phenotype Term Source REF						
+Phenotype Term Name						
+Phenotype Term Accession						
+						
+# Feature Level Data Files (give individual file details unless there is one file per well)						
+Feature Level Data File Name						
+Feature Level Data File Format						
+Feature Level Data File Description						
+Feature Level Data Column Name						
+Feature Level Data Column Description						
+						
+# Processed Data Files						
+Processed Data File Name	idr0079-experimentA-processed.txt					
+Processed Data File Format	tab-delimited text					
+Processed Data File Description	A list of all data files in the extracted_measurements folder, describing the data contained in each of these files					
+Processed Data Column Name	Source Name	File Name	File Path	Description	File Structure	Notes
+Processed Data Column Type 						
+Processed Data Column Annotation Level						
+Processed Data Column Description						
+Processed Data Column Link To Assay File	Source Name					
+						
+						
+Experiment Number	2					
+Comment[IDR Experiment Name]	idr0079-hartmann-lateralline/experimentB	
+Experiment Sample Type	tissue				
+Experiment Description	3D confocal imaging of fixed samples of the zebrafish posterior lateral line primordium labeled with the membrane marker cldnB:lyn-EGFP and stained for pea3 mRNA using single molecule Fluorescence In-Situ Hybridization (smFISH).					
+Experiment Size	5D Images: 31	Average Image Dimension (XYZCT): 1572 x 780 x 117 x 2 x 1	Total Tb: 0.0166			
+Experiment Example Images	80759AC74C					
+Experiment Imaging Method	confocal microscopy
+Experiment Imaging Method Term Source REF	Fbbi					
+Experiment Imaging Method Term Accession	FBbi_00000251					
+Experiment Comments	AiryScan FAST-mode confocal fluorescence microscopy					
+						
+# assay files						
+Experiment Assay File	idr0079-experimentB-assays.txt					
+Experiment Assay File Format	tab-delimited text					
+Assay Experimental Conditions						
+Assay Experimental Conditions Term Source REF						
+Assay Experimental Conditions Term Accession						
+Quality Control Description	Single-cell segmentation quality was checked manually for samples where a large number of cells (>20%) failed to be recognized by the algorithm.					
+						
+# Protocols						
+Protocol Name	growth protocol	image acquisition and feature extraction protocol	data analysis protocol			
+Protocol Type	growth protocol	image acquisition and feature extraction protocol	data analysis protocol			
+Protocol Type Term Source REF	EFO					
+Protocol Type Term Accession	EFO_0003789					
+Protocol Description	Zebrafish embryos were grown in E3 buffer at 27-30°C according to standard procedures (see zfin.org/zf_info/zfbook/zfbk.html). Pigmentation was prevented by treating embryos with 0.002% N-phenylthiourea (PTU) starting at 25hpf.	Embryos expressed the transgenic membrane label cldnb:lyn-EGFPR (see doi.org/10.1016/j.devcel.2006.02.019) and were stained for pea3 mRNA with smFISH. For smFISH staining, embryos were fixed in 4% PFA in PBS-T, permeabilized in 100% methanol overnight, rehydrated with a methanol series and finally hybridized with pea3 probe solution overnight. See the Study Publication for further details, including washing steps, buffer compositions and probe sequences. For imaging, embryos were mounted on glass slides using VECTASHIELD® HardSet™ Antifade Mounting Medium. Imaging was performed on the Zeiss LSM880 AiryScan confocal microscope in FAST mode with a 63x 1.4NA oil immersion objective. 8x averaging was used specifically for the smFISH channel. Deconvolution was performed using the ZEN Black Software's 3D AiryScan deconvolution with 'auto' settings. Automated single-cell segmentation was performed using a custom python pipeline based on thresholding and watershed expansion, described in detail in the Study Publication.	Numerical features describing cell morphology were computed for each segmented cell using a point cloud-based morphometry approach. smFISH spots were identified using the `blob_log` spot detector from the scikit-image library for python. Protein distribution features were cross-predicted from other datasets (see experiment A) using machine learning based on cell shape features as input. Custom pipelines and algorithms for these analyses were implemented in python and are described in detail in the Study Publication.			
+						
+# Phenotypes						
+Phenotype Name						
+Phenotype Description						
+Phenotype Score Type						
+Phenotype Term Source REF						
+Phenotype Term Name						
+Phenotype Term Accession						
+						
+# Feature Level Data Files (give individual file details unless there is one file per well)						
+Feature Level Data File Name						
+Feature Level Data File Format						
+Feature Level Data File Description						
+Feature Level Data Column Name						
+Feature Level Data Column Description						
+						
+# Processed Data Files						
+Processed Data File Name	idr0079-experimentB-processed.txt					
+Processed Data File Format	tab-delimited text					
+Processed Data File Description	A list of all data files in the extracted_measurements folder, describing the data contained in each of these files					
+Processed Data Column Name	Source Name	File Name	File Path	Description	File Structure	Notes
+Processed Data Column Type	Processed Data Column Annotation Level						
+Processed Data Column Description						
+Processed Data Column Link To Assay File	Source Name					
