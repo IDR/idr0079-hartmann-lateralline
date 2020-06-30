@@ -19,11 +19,11 @@ Study BioImage Archive Accession
 Study Public Release Date	2020-06-30					
 						
 # Study Publication						
-Study PubMed ID						
+Study PubMed ID	32501214					
 Study Publication Title	An Image-Based Data-Driven Analysis of Cellular Architecture in a Developing Tissue					
 Study Author List	Hartmann J, Wong M, Gallo E, Gilmour D					
-Study PMC ID						
-Study DOI	 					
+Study PMC ID	PMC7274788						
+Study DOI	https://doi.org/10.7554/eLife.55913				
 						
 # Study Contacts						
 Study Person Last Name	Hartmann	Gilmour				
