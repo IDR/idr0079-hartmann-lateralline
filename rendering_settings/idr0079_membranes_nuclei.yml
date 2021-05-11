@@ -6,5 +6,5 @@ channels:
     2:
         label: NLStdTomato
         color: FF0000
-greyscale: true
+greyscale: false
 version: 2
