@@ -4,9 +4,13 @@ channels:
         label: lynEGFP
         color: 00FF00
         active: true
+        end: 200.0
+        start: 0.0
     2:
         label: mKate2rab5
         color: FF0000
         active: true
+        end: 100.0
+        start: 20.0
 greyscale: false
 version: 2

@@ -10,7 +10,7 @@ channels:
         label: lysotrackerdeepred
         color: FF0000
         active: true
-        end: 150.0
+        end: 120.0
         start: 15.0
 greyscale: false
 version: 2
