@@ -1,12 +1,16 @@
 ---
 channels:
     1:
+        label: lynEGFP
+        color: 00FF00
         active: true
         end: 150.0
         start: 5.0
     2:
+        label: lysotrackerdeepred
+        color: FF0000
         active: true
-        end: 150.0
+        end: 120.0
         start: 15.0
 greyscale: false
 version: 2

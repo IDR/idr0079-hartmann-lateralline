@@ -1,0 +1,7 @@
+---
+channels:
+    1:
+        label: lynEGFP unmixed
+        color: 00FF00
+greyscale: false
+version: 2

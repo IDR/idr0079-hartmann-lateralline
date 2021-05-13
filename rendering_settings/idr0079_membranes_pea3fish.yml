@@ -1,10 +1,14 @@
 ---
 channels:
     1:
+        label: lynEGFP
+        color: 00FF00
         active: true
         end: 200.0
         start: 0.0
     2:
+        label: pea3smFISH
+        color: FF0000
         active: true
         end: 100.0
         start: 30.0
