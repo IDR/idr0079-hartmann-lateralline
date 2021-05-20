@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import pandas
+import argparse
 import csv
 import mimetypes
 from shapely.geometry import Polygon, Point
@@ -11,15 +12,16 @@ import omero
 from omero.rtypes import rint, rdouble, rstring
 from omero_metadata.populate import ParsingContext
 from omero.util.metadata_utils import NSBULKANNOTATIONSRAW
-
+import os 
 
 project_name = "idr0079-hartmann-lateralline/experimentA"
-tables_path = "/uod/idr/filesets/idr0079-hartmann-lateralline/"
-# For local testing
-tables_path = "/Users/wmoore/Desktop/IDR/idr0079/idr0079-hartmann-lateralline/"
 
-tables_path += "experimentA/idr0079_experimentA_extracted_measurements/%s/"
-tables_path += "%s_other_measurements.tsv"
+tables_path = os.path.join(
+    os.getcwd(),
+    "experimentA/idr0079_experimentA_extracted_measurements/%s/",
+    "%s_other_measurements.tsv"
+)
+print("tables_path", tables_path)
 
 
 def get_omero_col_type(dtype):
@@ -72,13 +74,35 @@ def get_shapes_at_point(conn, image_id, x, y, z):
             xy = []
             for p in points.split(" "):
                 xy.append([float(c) for c in p.strip(",").split(",")])
-            if Polygon(xy).contains(Point(x, y)):
+            if len(xy) > 3 and Polygon(xy).contains(Point(x, y)):
                 shapes_at_point.append(shape)
 
     return shapes_at_point
 
 
+def get_shape_ids(conn, roi_id):
+    params = omero.sys.ParametersI()
+    params.addId(roi_id)
+    query = """select shape from Shape as shape
+            where shape.roi.id = :id"""
+    shapes = conn.getQueryService().findAllByQuery(query, params, conn.SERVICE_OPTS)
+    return [s.id.val for s in shapes]
+
+
+def set_name_for_all_rois(conn, image_id):
+    params = omero.sys.ParametersI()
+    params.addId(image_id)
+    query = """select roi from Roi as roi
+            where roi.image.id = :id"""
+    rois = conn.getQueryService().findAllByQuery(query, params, conn.SERVICE_OPTS)
+    for roi in rois:
+        roi.name = rstring(str(roi.id.val))
+    conn.getUpdateService().saveArray(rois)
+
+
 def process_image(conn, image):
+    # Since populate_metadata fails if rois don't have name
+    set_name_for_all_rois(conn, image.id)
 
     # Read csv for each image
     image_name = image.name
@@ -114,16 +138,18 @@ def process_image(conn, image):
 
         polygons = get_shapes_at_point(conn, image.id, x_pixels, y_pixels, z_index)
         if len(polygons) == 1:
-            print("adding polygon", len(polygons))
             poly = polygons[0]
+            print("Found 1 polygon. ID:", poly.id.val)
             roi = poly.roi
             new_row = {}
+            # Create a copy of row, with columns named with_underscores (no spaces)
             for c in col_names:
                 value = row[c]
                 new_row[c.replace(" ", "_")] = value
             new_row["Roi"] = roi.id.val
-            new_row["Shape"] = poly.id.val
-            df2 = df2.append(new_row, ignore_index=True)
+            for shape_id in get_shape_ids(conn, roi.id.val):
+                new_row["Shape"] = shape_id
+                df2 = df2.append(new_row, ignore_index=True)
             # all ROIs must have a name for populate metadata
             roi.name = rstring(row["Cell ID"])
             conn.getUpdateService().saveObject(roi)
@@ -131,15 +157,17 @@ def process_image(conn, image):
             print(" - found polygons:", len(polygons))
 
     csv_name = image.name + ".csv"
+    print("writing", csv_name)
     with open(csv_name, "w") as csv_out:
         csv_out.write("# header roi,l," + ",".join(col_types) + "\n")
 
     df2.to_csv(csv_name, mode="a", index=False)
 
+    print("populate metadata...")
     populate_metadata(image, csv_name)
 
 
-def main(conn):
+def main(conn, args):
 
     project = conn.getObject("Project", attributes={"name": project_name})
     print("Project", project.id)
@@ -150,13 +178,23 @@ def main(conn):
             # ignore _seg images etc.
             if '_' in image.name:
                 continue
-            if image.name != "1A3F9F428A":
+            if args.name and image.name != args.name:
+                continue
+            if image.getROICount() == 0:
+                print("No ROIs for image", image.name)
                 continue
             process_image(conn, image)
 
 
 if __name__ == "__main__":
+    # USAGE:
+    # $ cd idr0079-hartmann-lateralline
+    # $ python csv_to_roi_table --name 00E41C184C
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--name", help="Filter images by Name")
+    args = parser.parse_args()
+
     with omero.cli.cli_login() as c:
         conn = omero.gateway.BlitzGateway(client_obj=c.get_client())
-        main(conn)
+        main(conn, args)
         conn.close()
