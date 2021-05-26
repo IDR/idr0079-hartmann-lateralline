@@ -3,7 +3,7 @@
 import pandas
 import csv
 import mimetypes
-from collections import defaultdict
+import os
 
 import omero.clients
 import omero.cli
@@ -14,11 +14,10 @@ from omero.util.metadata_utils import NSBULKANNOTATIONSRAW
 
 
 project_name = "idr0079-hartmann-lateralline/experimentA"
-tables_path = "/uod/idr/filesets/idr0079-hartmann-lateralline/"
-# For local testing
-tables_path = "/Users/wmoore/Desktop/IDR/idr0079/idr0079-hartmann-lateralline/"
 
-tables_path += "experimentA/idr0079_experimentA_extracted_measurements/%s/"
+# NB: Need to be in idr0079-hartmann-lateralline directory
+
+tables_path = "./experimentA/idr0079_experimentA_extracted_measurements/%s/"
 # Lots of tsv files to choose from...
 # e.g. Tissue Frame Of Reference Primary Component Analysis measured:
 # tables_path += "%s_shape_TFOR_pca_measured.tsv"
@@ -43,6 +42,7 @@ def populate_metadata(project, dict_data):
     header = f"# header {','.join(col_types)}\n"
     print('header', header)
     csv_file = "other_measurements_summaries.csv"
+    print("writing to", csv_file)
     with open(csv_file, 'w') as csvfile:
         # header s,s,d,l,s
         csvfile.write(header)
@@ -109,6 +109,9 @@ def process_image(image):
         min_val = summary[f'Centroids RAW {dim}']['min']
         max_val = summary[f'Centroids RAW {dim}']['max']
         data[f'RAW_{dim}_Range'] = max_val - min_val
+        min_tfor = summary[f'Centroids TFOR {dim}']['min']
+        max_tfor = summary[f'Centroids TFOR {dim}']['max']
+        data[f'TFOR_{dim}_Range'] = max_tfor - min_tfor
     
     # Mean_Sphericity, Mean_Volume, Mean_Z_Axis_Length, Mean_X_Axis_Length
     for col_name in ['Sphericity', 'Volume', 'X Axis Length', 'Y Axis Length', 'Z Axis Length']:
@@ -124,7 +127,6 @@ def process_image(image):
     #         value = summary[f'PC {pc_id}'][stat]
     #         data[omero_table_colname] = value
 
-    print(data)
     return data
 
 
@@ -141,13 +143,15 @@ def main(conn):
             if '_' in image.name:
                 continue
             dict_data = process_image(image)
-            print('dict_data', dict_data)
             dict_data['Dataset Name'] = dataset.name
             dict_data['Image Name'] = image.name
             data_rows.append(dict_data)
 
     populate_metadata(project, data_rows)
 
+# Usage:
+# cd idr0079-hartmann-lateralline
+# python scripts/csv_to_table_on_project.py
 
 if __name__ == "__main__":
     with omero.cli.cli_login() as c:
