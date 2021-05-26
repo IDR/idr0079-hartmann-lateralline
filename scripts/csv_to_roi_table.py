@@ -134,9 +134,9 @@ if __name__ == "__main__":
     # NB: Assumes that the segmentation ROIs are added to the image
     # (and *before* any other ROIs)
     #
-    # USAGE:
+    # USAGE: (use --name if you want to ONLY process 1 image)
     # $ cd idr0079-hartmann-lateralline
-    # $ python csv_to_roi_table --name 00E41C184C
+    # $ python scripts/csv_to_roi_table --name 00E41C184C
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", help="Filter images by Name")
     args = parser.parse_args()
