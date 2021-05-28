@@ -1,0 +1,12 @@
+name_in_my_db	original_idr_experiment	merged_idr_experiment	name_in_idr	x [microns]	y [microns]	z [microns]
+membrane_only	experimentA	experimentA	membranes	0.0992103	0.0992103	0.2245383
+NLS-tdTomato	experimentB	experimentA	membranes_nuclei	0.1024427	0.1024427	0.2245383
+tagRFPt-UtrCH	experimentC	experimentA	membranes_actin	0.1024427	0.1024427	0.2245383
+mkate2-GM130(rat)	experimentD	experimentA	membranes_cisgolgi	0.0992103	0.0992103	0.2200000
+mKate2-Rab5a	experimentE	experimentA	membranes_earlyendo	0.0992103	0.0992103	0.2200000
+mKate2-Rab11a	experimentF	experimentA	membranes_recendo	0.0992103	0.0992103	0.2245383
+CDMPR-tagRFPt	experimentG	experimentA	membranes_tgn	0.0992103	0.0992103	0.2200000
+B4GalT1(1-55Q)-tagRFPt	experimentH	experimentA	membranes_transgolgi	0.0992103	0.0992103	0.2200000
+atoh1a_dtomato	experimentI	experimentA	membranes_atoh1a	0.0992103	0.0992103	0.2245383
+LysoTracker	experimentJ	experimentA	membranes_lyso	0.0992103	0.0992103	0.2245383
+pea3 smFISH	experimentK	experimentB	membranes_pea3fish	0.0851964	0.0851964	0.1867357
