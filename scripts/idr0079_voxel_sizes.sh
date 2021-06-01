@@ -12,6 +12,18 @@ omero metadata pixelsize --x 0.1024427 --y 0.1024427 --z 0.2245383 Dataset:10263
 omero metadata pixelsize --x 0.1024427 --y 0.1024427 --z 0.2245383 Dataset:10264
 # membranes_actin_seg
 omero metadata pixelsize --x 0.1024427 --y 0.1024427 --z 0.2245383 Dataset:10265
+# within those 2 Datasets 5 images in each have different pixel sizes
+# 2BDB74A7D6, 64484C06F9, 770CB12681, B2B1FB7EE0, BCAAF27981
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837062
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837072
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837076
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837086
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837088
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837063
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837073
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837077
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837087
+omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.2245383 Image:9837089
 
 # membranes_cisgolgi
 omero metadata pixelsize --x 0.0992103 --y 0.0992103 --z 0.22 Dataset:10266
