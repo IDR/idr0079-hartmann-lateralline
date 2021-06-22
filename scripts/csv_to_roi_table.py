@@ -74,7 +74,7 @@ def process_image(conn, image):
     col_names = list(df.columns)
     new_col_names = [name.replace(" ", "_") for name in col_names]
     # Create output table with extra columns
-    df2 = pandas.DataFrame(columns=(["Roi", "Shape"] + new_col_names))
+    df2 = pandas.DataFrame(columns=(["Roi"] + new_col_names))
 
     # Get all ROIs - The order seems to correspond to the order they were
     # created in, which matches the order of rows in the .tsv
@@ -91,11 +91,7 @@ def process_image(conn, image):
             value = row[c]
             new_row[c.replace(" ", "_")] = value
         new_row["Roi"] = roi.id.val
-        # for OMERO.figure workshop, we want to be able to query table by Shape ID
-        # So we duplicate the ROI row for each Shape
-        for shape in roi.copyShapes():
-            new_row["Shape"] = shape.id.val
-            df2 = df2.append(new_row, ignore_index=True)
+        df2 = df2.append(new_row, ignore_index=True)
         # all ROIs must have a name for populate metadata
         roi.name = rstring(row["Cell ID"])
         conn.getUpdateService().saveObject(roi)
