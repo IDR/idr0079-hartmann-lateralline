@@ -92,9 +92,6 @@ def process_image(conn, image):
             new_row[c.replace(" ", "_")] = value
         new_row["Roi"] = roi.id.val
         df2 = df2.append(new_row, ignore_index=True)
-        # all ROIs must have a name for populate metadata
-        roi.name = rstring(row["Cell ID"])
-        conn.getUpdateService().saveObject(roi)
 
     csv_name = image.name + ".csv"
     print("writing", csv_name)
