@@ -90,7 +90,7 @@ def process_image(conn, image):
     csv_name = image.name + ".csv"
     print("writing", csv_name)
     with open(csv_name, "w") as csv_out:
-        csv_out.write("# header roi,l," + ",".join(col_types) + "\n")
+        csv_out.write("# header roi," + ",".join(col_types) + "\n")
 
     df2.to_csv(csv_name, mode="a", index=False)
 
