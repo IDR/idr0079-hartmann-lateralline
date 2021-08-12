@@ -34,15 +34,9 @@ def get_omero_col_type(dtype):
 
 def populate_metadata(image, csv_name):
 
-    mt = mimetypes.guess_type(csv_name, strict=False)[0]
-    fileann = conn.createFileAnnfromLocalFile(
-        csv_name, mimetype=mt, ns=NSBULKANNOTATIONSRAW
-    )
-    fileid = fileann.getFile().getId()
-    image.linkAnnotation(fileann)
     client = image._conn.c
     ctx = ParsingContext(
-        client, image._obj, fileid=fileid, file=csv_name, allow_nan=True
+        client, image._obj, file=csv_name, allow_nan=True
     )
     ctx.parse()
 
