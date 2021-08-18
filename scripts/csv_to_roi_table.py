@@ -30,11 +30,12 @@ def get_omero_col_type(dtype):
     return "s"
 
 
-def populate_metadata(image, csv_name):
+def populate_metadata(image, csv_name, table_name):
 
     client = image._conn.c
     ctx = ParsingContext(
-        client, image._obj, file=csv_name, allow_nan=True
+        client, image._obj, file=csv_name, allow_nan=True,
+        table_name=table_name
     )
     ctx.parse()
 
@@ -83,7 +84,8 @@ def process_image(conn, image, table_name):
     df2.to_csv(csv_name, mode="a", index=False)
 
     print("populate metadata...")
-    populate_metadata(image, csv_name)
+    bulk_name = table_name.lstrip("_").replace(".tsv", "")
+    populate_metadata(image, csv_name, bulk_name)
 
 
 def main(conn, args):
