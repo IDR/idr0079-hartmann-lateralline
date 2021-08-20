@@ -86,6 +86,8 @@ def process_image(conn, image, table_name):
     print("populate metadata...")
     bulk_name = table_name.lstrip("_").replace(".tsv", "")
     populate_metadata(image, csv_name, bulk_name)
+    # delete csv
+    os.remove(csv_name)
 
 
 def main(conn, args):
