@@ -4,6 +4,7 @@ import pandas
 import argparse
 import csv
 import mimetypes
+import tempfile
 
 import omero.clients
 import omero.cli
@@ -61,7 +62,7 @@ def process_image(conn, image, table_name):
     row_count = len(df.index)
     print("Found %s ROIS and %s csv rows" % (roi_count, row_count))
     if roi_count != row_count:
-        return f"Mismatching counts: {table_pth}"
+        return "Mismatching counts: %s" % table_pth
 
     # Go through every row, find Shape ID and ROI ID
     # for row in df.to_dict(orient='records'):
@@ -76,18 +77,20 @@ def process_image(conn, image, table_name):
         new_row["Roi"] = roi.id.val
         df2 = df2.append(new_row, ignore_index=True)
 
-    csv_name = image.name + ".csv"
-    print("writing", csv_name)
-    with open(csv_name, "w") as csv_out:
-        csv_out.write("# header roi," + ",".join(col_types) + "\n")
+    with tempfile.TemporaryDirectory() as tmpdirname:
 
-    df2.to_csv(csv_name, mode="a", index=False)
+        csv_name = os.path.join(tmpdirname, image.name + ".csv")
+        print("writing", csv_name)
+        with open(csv_name, "w") as csv_out:
+            csv_out.write("# header roi," + ",".join(col_types) + "\n")
 
-    print("populate metadata...")
-    bulk_name = table_name.lstrip("_").replace(".tsv", "")
-    populate_metadata(image, csv_name, bulk_name)
-    # delete csv
-    os.remove(csv_name)
+        df2.to_csv(csv_name, mode="a", index=False)
+
+        print("populate metadata...")
+        bulk_name = table_name.lstrip("_").replace(".tsv", "")
+        populate_metadata(image, csv_name, bulk_name)
+        # delete csv
+        os.remove(csv_name)
 
 
 def main(conn, args):
@@ -100,7 +103,7 @@ def main(conn, args):
     errors = []
     ok = 0
     for table_name in table_names:
-        print(f"\n\nProcessing table: {table_name}")
+        print("\n\nProcessing table: %s" % table_name)
         for dataset in project.listChildren():
             for image in dataset.listChildren():
                 # ignore _seg images etc.
