@@ -107,10 +107,10 @@ Experiment Sample Type	tissue
 Experiment Description	3D confocal imaging of fixed samples of the zebrafish posterior lateral line primordium labeled with the membrane marker cldnB:lyn-EGFP and stained for pea3 mRNA using single molecule Fluorescence In-Situ Hybridization (smFISH).					
 Experiment Size	5D Images: 31	Average Image Dimension (XYZCT): 1572 x 780 x 117 x 2 x 1	Total Tb: 0.0166			
 Experiment Example Images	80759AC74C					
-Experiment Imaging Method	AiryScan FAST-mode confocal fluorescence microscopy	confocal microscopy
+Experiment Imaging Method	array-scan confocal microscopy
 Experiment Imaging Method Term Source REF	Fbbi					
-Experiment Imaging Method Term Accession	FBbi_00000251					
-Experiment Comments						
+Experiment Imaging Method Term Accession	Fbbi_00000393					
+Experiment Comments	AiryScan FAST-mode confocal fluorescence microscopy						
 						
 # assay files						
 Experiment Assay File	idr0079-experimentB-assays.txt					
